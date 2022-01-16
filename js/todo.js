@@ -14,7 +14,6 @@ function saveToDos() {
 const username = localStorage.getItem("username");
 if (username === null) {
   toDoForm.classList.add("hidden");
-  deleteTodo();
 } else if (username !== null) {
   toDoForm.classList.remove("hidden");
 }
@@ -23,7 +22,6 @@ if (username === null) {
 
 function deleteTodo() {
   const li = event.target.parentElement;
-
   li.remove();
 }
 
