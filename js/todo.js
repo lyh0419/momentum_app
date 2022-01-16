@@ -4,7 +4,7 @@ const toDoList = document.getElementById("todo-list");
 
 const TODOS_KEY = "toDos";
 
-const toDos = [];
+let toDos = [];
 
 function saveToDos() {
   localStorage.setItem(TODOS_KEY, JSON.stringify(toDos));
@@ -14,13 +14,16 @@ function saveToDos() {
 const username = localStorage.getItem("username");
 if (username === null) {
   toDoForm.classList.add("hidden");
+  deleteTodo();
 } else if (username !== null) {
   toDoForm.classList.remove("hidden");
 }
+
 // username 없으면 창 숨기기 종료
 
 function deleteTodo() {
   const li = event.target.parentElement;
+
   li.remove();
 }
 
@@ -51,6 +54,6 @@ const savedToDos = localStorage.getItem(TODOS_KEY);
 
 if (savedToDos !== null) {
   const parsedToDos = JSON.parse(savedToDos);
-  console.log(parsedToDos);
-  parsedToDos.forEach((item) => console.log("this is the turn of", item));
+  toDos = parsedToDos;
+  parsedToDos.forEach(paintToDo);
 }
